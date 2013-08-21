@@ -16,7 +16,9 @@ class Page
   end
   
   def add_bounding box
-    @pdf.bounding_box
+    @pdf.bounding_box([0, @pdf.bounds.height], width: @pdf.bounds.width, height: @pdf.bound.height) do
+      @pdf.stroke_bounds
+    end
   end
 
 end
