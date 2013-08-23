@@ -16,7 +16,9 @@ class Page
   end
 
   def add_bounding_box
-    @pdf.bounding_box([0, @pdf.bounds.height], width: @pdf.bounds.width, height: @pdf.bounds.height) do
+    @pdf.bounding_box([0, @pdf.bounds.height], 
+      width: @pdf.bounds.width, height: @pdf.bounds.height) do
+      @pdf.image "mangatar.jpg", height: 250
       @pdf.stroke_bounds
     end
   end
