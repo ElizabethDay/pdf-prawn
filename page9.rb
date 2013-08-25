@@ -14,8 +14,8 @@ class Page
 
   def add_background
     @pdf.canvas do
-      @pdf.image @background, at: [0, @base_height],
-        width: @base_width, height: @base_height
+      @pdf.image @background, at: [0, @pdf.bounds.height],
+        width: @pdf.bounds.width, height: @pdf.bounds.height
     end
   end
 
@@ -67,12 +67,18 @@ class Page
     end
   end
 
-  def add_profile
-    @pdf.bounding_box([40, @base_height - 150], width: 150, height: 100) do
-      @pdf.text "Profile", style: :bold
+  def add_skills
+    @pdf.bounding_box([40, @base_height - 150], width: 80, height: 100) do
+      @pdf.move_down 8
+      @pdf.text "Skills", style: :bold
     end
-    @pdf.bounding_box([190, @base_height - 150],
-      width: @base_width, height: 100) do
+    @pdf.bounding_box([120, @base_height - 150],
+        width: @base_width - 140, height: 100) do
+      @pdf.table([ ["Ruby", "Java", "Regular expressions"],
+                   ["JavaScript/JQuery", "CSS", "Sinatra/Rails"],
+                   ["XSLT", "HTML", "PHP"] ],
+                   column_widths: [125, 125, 125],
+                   cell_style: {borders: [:left], })
     end
   end
 end
@@ -82,5 +88,5 @@ Prawn::Document.generate('page.pdf') do |pdf|
 
   page.add_background
   page.add_header
-  page.add_profile
+  page.add_skills
 end

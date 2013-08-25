@@ -14,7 +14,7 @@ class Page
         width: @pdf.bounds.width, height: @pdf.bounds.height
     end
   end
-  
+
   def add_hello_text
     ["Courier", "Helvetica", "Times-Roman"].each do |font|
       @pdf.font font

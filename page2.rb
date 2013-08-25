@@ -8,7 +8,7 @@ class Page
   end
 
   def add_hello_text
-    @pdf.text "Hello, BarCamp"
+    @pdf.text "Hello, BarCamp!"
   end
 end
 
